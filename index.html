@@ -237,7 +237,7 @@ main{position:relative;z-index:1}
 
 
 /* ===== TABELA DE BÔNUS ===== */
-.bonus{position:relative;z-index:2;padding:16vh 0 12vh}
+.bonus-sec{position:relative;z-index:2;padding:16vh 0 12vh}
 .bn-wrap{width:min(1180px,92vw);margin:0 auto}
 .bn-head{text-align:center;max-width:760px;margin:0 auto 5vh}
 .bn-head h2{font-size:clamp(34px,5vw,70px);margin:12px 0 16px}
@@ -258,6 +258,14 @@ main{position:relative;z-index:1}
 .so-st.up{color:#c79bff}.so-st.mt{color:#e6dcff}.so-st.dn{color:#ff8fb3}.so-st.no{color:var(--faint)}
 .sim-out strong{font-weight:900;font-size:clamp(52px,6vw,88px);line-height:1;letter-spacing:-.03em;color:#86f0b1;text-shadow:0 0 30px rgba(134,240,177,.35);font-variant-numeric:tabular-nums}
 .so-l{font-size:14px;line-height:1.5;color:var(--muted);max-width:34ch}
+.sim2{max-width:560px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 28px;border-radius:26px;background:linear-gradient(150deg,rgba(25,198,167,.14),rgba(123,60,240,.16));box-shadow:0 0 0 1px rgba(255,255,255,.13) inset,0 30px 80px rgba(0,0,0,.45)}
+.sim2 label{font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac)}
+.s2-d{font-size:30px;font-weight:900}
+.sim2 input[type=range]{width:100%;accent-color:#a35cff;height:30px}
+.s2-out{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:6px}
+.s2-out span{font-size:13px;font-weight:700;color:var(--muted)}
+.s2-out strong{font-weight:900;font-size:clamp(54px,7vw,92px);line-height:1;letter-spacing:-.03em;color:#86f0b1;text-shadow:0 0 30px rgba(134,240,177,.35);font-variant-numeric:tabular-nums}
+.s2-note{margin:6px 0 0;font-size:12.5px;line-height:1.5;color:var(--faint);max-width:40ch}
 .bn-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}
 .bn-table{border-radius:22px;overflow:hidden;background:rgba(10,4,26,.72);box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
 .bn-table table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
@@ -390,7 +398,7 @@ footer img{height:24px;width:auto}
   .bf-card p{font-size:13px;line-height:1.5}
   .bf-card svg{width:48px;height:48px}
   .bf-card h3{font-size:19px}
-  .bonus{padding:12vh 0 8vh}
+  .bonus-sec{padding:12vh 0 8vh}
   .sim{grid-template-columns:1fr;padding:18px;gap:16px;border-radius:22px}
   .sim-row output{font-size:19px}
   .sim-days button{flex:1;font-size:12px;padding:10px 8px}
@@ -533,35 +541,16 @@ footer img{height:24px;width:auto}
 
 
 <!-- 7b. TABELA DE BÔNUS -->
-<section class="bonus" id="bonus" aria-labelledby="bonus-title">
+<section class="bonus-sec" id="bonus" aria-labelledby="bonus-title">
   <div class="bn-wrap">
     <div class="bn-head rv"><span class="eyebrow">Tabela de bônus e incentivo</span><h2 class="display" id="bonus-title">Seu bônus extra <span class="grad">via Pix</span></h2>
       <p>Além dos ganhos que você recebe diretamente no saldo do TikTok, ao atingir determinadas metas, dias e horas você recebe esse bônus extra em Pix.</p></div>
-    <div class="sim rv">
-      <div class="sim-in">
-        <div class="sim-row"><label for="sim-a">Mês passado</label><output id="sim-a-v">150K 💎</output></div>
-        <input type="range" id="sim-a" min="0" max="12" step="1" value="4"/>
-        <div class="sim-row"><label for="sim-b">Esse mês</label><output id="sim-b-v">250K 💎</output></div>
-        <input type="range" id="sim-b" min="0" max="12" step="1" value="5"/>
-        <div class="sim-days" role="group" aria-label="Dias e horas de live no mês">
-          <button type="button" class="on" data-pct="100">23 dias + 100h</button><button type="button" data-pct="50">20 dias + 80h</button>
-        </div>
-        <div class="sim-ex"><span>Exemplos:</span><button type="button" data-a="4" data-b="4">150K → 160K</button><button type="button" data-a="4" data-b="5">150K → 250K</button></div>
-      </div>
-      <div class="sim-out" aria-live="polite">
-        <span class="so-st" id="so-st">Cresceu</span>
-        <strong id="so-v">R$ 375</strong>
-        <span class="so-l" id="so-l">Você saiu do nível 4 e foi para o nível 5. Recebe o bônus de crescimento.</span>
-      </div>
-    </div>
-    <div class="bn-grid">
-      <div class="bn-table rv"><table><thead><tr><th>Nível</th><th>Meta de diamantes</th><th class="dn">Desceu</th><th class="mt">Manteve</th><th class="up">Cresceu</th></tr></thead><tbody><tr data-l="1"><td><b>1</b><sup>**</sup></td><td>20K 💎</td><td class="dn">R$ 30</td><td class="mt">R$ 30</td><td class="up">R$ 30</td></tr><tr data-l="2"><td><b>2</b></td><td>40K 💎</td><td class="dn">R$ 60</td><td class="mt">R$ 60</td><td class="up">R$ 60</td></tr><tr data-l="3"><td><b>3</b></td><td>80K 💎</td><td class="dn">R$ 60</td><td class="mt">R$ 110</td><td class="up">R$ 125</td></tr><tr data-l="4"><td><b>4</b></td><td>150K 💎</td><td class="dn">R$ 180</td><td class="mt">R$ 215</td><td class="up">R$ 240</td></tr><tr data-l="5"><td><b>5</b></td><td>250K 💎</td><td class="dn">R$ 275</td><td class="mt">R$ 325</td><td class="up">R$ 375</td></tr><tr data-l="6"><td><b>6</b></td><td>350K 💎</td><td class="dn">R$ 400</td><td class="mt">R$ 450</td><td class="up">R$ 500</td></tr><tr data-l="7"><td><b>7</b></td><td>500K 💎</td><td class="dn">R$ 550</td><td class="mt">R$ 675</td><td class="up">R$ 750</td></tr><tr data-l="8"><td><b>8</b></td><td>800K 💎</td><td class="dn">R$ 800</td><td class="mt">R$ 900</td><td class="up">R$ 1.000</td></tr><tr data-l="9"><td><b>9</b></td><td>1M 💎</td><td class="dn">R$ 1.100</td><td class="mt">R$ 1.150</td><td class="up">R$ 1.300</td></tr><tr data-l="10"><td><b>10</b></td><td>1.2M 💎</td><td class="dn">R$ 1.350</td><td class="mt">R$ 1.500</td><td class="up">R$ 1.650</td></tr><tr data-l="11"><td><b>11</b></td><td>1.6M 💎</td><td class="dn">R$ 1.650</td><td class="mt">R$ 1.750</td><td class="up">R$ 1.850</td></tr><tr data-l="12"><td><b>12</b></td><td>2M 💎</td><td class="dn">R$ 2.500</td><td class="mt">R$ 2.500</td><td class="up">R$ 2.500</td></tr></tbody></table>
-        <div class="bn-leg"><span class="dn">Desceu: sua meta ficou abaixo do nível atual.</span><span class="mt">Manteve: você permaneceu no mesmo nível.</span><span class="up">Cresceu: você subiu para o próximo nível.</span></div></div>
-      <div class="bn-side">
-        <div class="bn-rule rv"><span>Cumpra</span><b>23 dias + 100 horas</b><em>Recebe 100% do valor do bônus correspondente</em></div>
-        <div class="bn-rule rv"><span>Cumpra</span><b>20 dias + 80 horas</b><em>Recebe 50% do valor do bônus correspondente</em></div>
-        <div class="bn-gold rv"><b>👑 Regra de ouro</b><span>Dentro do mesmo nível = mesmo bônus. Só muda o bônus quando muda de nível!</span></div>
-      </div>
+    <div class="sim2 rv">
+      <label for="sim-b">Quantos diamantes você faz por mês?</label>
+      <output id="sim-b-v" class="s2-d">150K 💎</output>
+      <input type="range" id="sim-b" min="1" max="12" step="1" value="4" aria-describedby="so-v"/>
+      <div class="s2-out" aria-live="polite"><span>Bônus de até</span><strong id="so-v">R$ 240</strong><span>por mês, via Pix</span></div>
+      <p class="s2-note">Além do saldo do TikTok, cumprindo 23 dias e 100 horas de live no mês.</p>
     </div>
     <p class="bn-fine rv">**A meta de 20k é exclusiva para os primeiros 2 meses de agenciamento. Banimentos de alta severidade ou solicitação de saída acarretarão na perda das bonificações. Esta tabela poderá sofrer reajustes com aviso prévio, pagamentos realizados em até 10 dias úteis após fechamento do mês.</p>
   </div>
@@ -783,20 +772,9 @@ var UP={};
 /* --- tabela de bônus --- */
 (function(){
   var T=[[1, "20K", 20000, 30, 30, 30], [2, "40K", 40000, 60, 60, 60], [3, "80K", 80000, 60, 110, 125], [4, "150K", 150000, 180, 215, 240], [5, "250K", 250000, 275, 325, 375], [6, "350K", 350000, 400, 450, 500], [7, "500K", 500000, 550, 675, 750], [8, "800K", 800000, 800, 900, 1000], [9, "1M", 1000000, 1100, 1150, 1300], [10, "1.2M", 1200000, 1350, 1500, 1650], [11, "1.6M", 1600000, 1650, 1750, 1850], [12, "2M", 2000000, 2500, 2500, 2500]];
-  var sa=$('#sim-a'),sb=$('#sim-b'),va=$('#sim-a-v'),vb=$('#sim-b-v'),st=$('#so-st'),v=$('#so-v'),l=$('#so-l'),rows=$$('.bn-table tbody tr'),pct=100;
-  function lab(i){return i===0?'Abaixo de 20K 💎':T[i-1][1]+' 💎';}
-  function brl(x){return 'R$ '+Math.round(x).toLocaleString('pt-BR');}
-  function calc(){var a=+sa.value,b=+sb.value;va.textContent=lab(a);vb.textContent=lab(b);
-    rows.forEach(function(r){r.classList.toggle('hl',+r.dataset.l===b);});
-    if(b===0){st.textContent='Sem bônus';st.className='so-st no';v.textContent='R$ 0';l.textContent='Abaixo da primeira meta (20K) não há bônus. Lembre: a meta de 20K vale nos 2 primeiros meses.';return;}
-    var row=T[b-1],kind=b<a?0:b===a?1:2,val=row[3+kind]*pct/100;
-    st.textContent=['Desceu','Manteve','Cresceu'][kind];st.className='so-st '+['dn','mt','up'][kind];v.textContent=brl(val);
-    var nm=['Recebe o bônus de DESCEU','Recebe o bônus de MANTER','Recebe o bônus de CRESCIMENTO'][kind];
-    l.textContent=(kind===2?'Você saiu do nível '+a+' e foi para o nível '+b+'. ':kind===1?'Você continua no nível '+b+'. ':'Você desceu para o nível '+b+'. ')+nm+(pct<100?' (50% do valor, por 20 dias + 80h).':'.');}
-  sa.addEventListener('input',calc);sb.addEventListener('input',calc);
-  $$('.sim-days button').forEach(function(btn){btn.addEventListener('click',function(){pct=+btn.dataset.pct;$$('.sim-days button').forEach(function(x){x.classList.toggle('on',x===btn);});calc();});});
-  $$('.sim-ex button').forEach(function(btn){btn.addEventListener('click',function(){sa.value=btn.dataset.a;sb.value=btn.dataset.b;calc();});});
-  calc();
+  var sb=$('#sim-b'),vb=$('#sim-b-v'),v=$('#so-v');
+  function calc(){var r=T[+sb.value-1];vb.textContent=r[1]+' 💎';v.textContent='R$ '+r[5].toLocaleString('pt-BR');}
+  sb.addEventListener('input',calc);calc();
   var io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15}):null;
   $$('.rv').forEach(function(e){io?io.observe(e):e.classList.add('in');});
 })();
