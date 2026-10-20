@@ -418,7 +418,7 @@ footer img{height:24px;width:auto}
 </section>
 
 <!-- 3. RESULTADOS -->
-<section class="scene" data-scene="numeros" data-title="Resultados" data-pal="numeros" style="--h:380">
+<section class="scene" data-scene="numeros" data-title="Resultados" data-pal="numeros" style="--h:340">
   <div class="stage">
     <div class="nm-head will"><span class="eyebrow">O último mês, em números</span><h2 class="display">Os resultados falam <span class="grad">por nós.</span></h2></div>
     <div class="nm will" data-v="181.8" data-d="1" data-suf=" MI"><strong>181,8 MI</strong><span>Diamantes no mês</span></div>
@@ -426,9 +426,8 @@ footer img{height:24px;width:auto}
     <div class="nm will" data-v="193" data-d="0"><strong>193</strong><span>Novatos que alcançaram 80 mil diamantes</span></div>
     <div class="nm will" data-v="100" data-d="0" data-pre="R$ " data-suf=" MIL"><strong>R$ 100 MIL</strong><span>Bônus mensais via Pix</span></div>
     <div class="nm will" data-v="55" data-d="0" data-pre="R$ " data-suf=" MIL"><strong>R$ 55 MIL</strong><span>Prêmios por mês</span></div>
-    <div class="nm will" data-v="57.16" data-d="2" data-suf="%"><strong>57,16%</strong><span>Crescimento informado</span></div>
     <div class="nm-cta"><h3 class="display">Os resultados você já viu.<br/>Agora é sua vez.</h3><a class="btn" href="https://www.tiktok.com/t/ZMhSHFjfc/" rel="noopener">QUERO FAZER PARTE ↗</a></div>
-    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <p class="foot-note">Indicadores operacionais informados pela Unike, referentes ao último mês consolidado. Ganhos individuais variam.</p>
   </div>
 </section>
@@ -625,7 +624,7 @@ var UP={};
     var kh=E(seg(p,.09,.17));T(head,'scale('+(1+kh*.8)+')',1-kh);
     var cur=-1;
     for(var i=0;i<data.length;i++){
-      var o=data[i],c=(p-(.22+i*.115))/.115;
+      var o=data[i],c=(p-(.24+i*.13))/.13;
       var ac=Math.abs(c);var sc=c<0?1+c*.45:1+c*1.7;
       T(o.el,'translate(-50%,-50%) translateY('+(c<0?-c*40:0)+'px) scale('+sc+')',cl(1-ac*(c<0?1.4:2)));
       o.el.style.filter=ac>.04?'blur('+Math.min(ac*7,10)+'px)':'none';
