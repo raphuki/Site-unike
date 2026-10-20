@@ -428,39 +428,6 @@ footer img{height:24px;width:auto}
   </div>
 </section>
 
-<!-- 6. GANHOS -->
-<section class="scene" data-scene="ganhos" data-title="Ganhos" data-pal="ganhos" style="--h:320">
-  <div class="stage">
-    <div class="gn-grid">
-      <div class="gauge">
-        <div class="stream"></div>
-        <svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd8ff"/><stop offset=".5" stop-color="#a35cff"/><stop offset="1" stop-color="#f3c46b"/></linearGradient></defs>
-          <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/>
-          <circle class="arc" cx="100" cy="100" r="88" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="552.9" stroke-dashoffset="552.9" style="filter:drop-shadow(0 0 8px rgba(163,92,255,.9))"/>
-          <circle cx="100" cy="100" r="88" fill="none" stroke="#f3c46b" stroke-width="14" stroke-dasharray="1.6 551.3" stroke-dashoffset="-293" opacity=".9"/></svg>
-        <div class="pct"><strong><em class="pval">0</em><sup>%</sup></strong><span>Repasse máximo por live</span><small class="esc">Escalonamento cumulativo conforme diamantes acumulados na live</small></div>
-        <div class="pix">+ Bônus via Pix</div>
-      </div>
-      <div class="cf-steps">
-        <div class="step will">
-          <span class="eyebrow">Remuneração</span>
-          <h2 class="display">Ganhe até <span class="gold">53%</span> de saque</h2>
-          <p>O sistema de remuneração do TikTok funciona por porcentagem cumulativa dentro da própria live: <strong>quanto mais diamantes você acumula, mais alto sobe o seu percentual de repasse</strong> — até o teto de 53%.</p>
-        </div>
-        <div class="step will">
-          <span class="eyebrow">Na prática</span>
-          <h2 class="display">A gente te ensina a <span class="grad">subir mais rápido</span></h2>
-          <p>A gente ensina, na prática, como tirar o máximo proveito disso e concluir as missões que fazem seu ganho subir mais rápido.</p>
-        </div>
-        <div class="step will">
-          <div class="bonus"><h3>Bônus mensal via Pix</h3><p>Além do saldo direto do TikTok, ao bater as metas da agência de diamantes, dias e horas de live, você recebe uma bonificação extra via Pix todo mês.</p></div>
-          <p class="fine">A meta de 20k diamantes é exclusiva para os dois primeiros meses de agenciamento. Banimentos de alta severidade ou solicitação de saída acarretam na perda das bonificações. A tabela de bônus pode sofrer reajustes com aviso prévio; pagamentos são realizados em até 10 dias úteis após o fechamento do mês.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 7. BENEFÍCIOS -->
 <section class="scene" data-scene="beneficios" data-title="Benefícios" data-pal="beneficios" id="beneficios" style="--h:380">
   <div class="stage">
@@ -625,22 +592,6 @@ var UP={};
     }
     for(i=0;i<dots.length;i++)dots[i].classList.toggle('on',i===cur);
     dd.style.opacity=seg(p,.12,.18)*(1-seg(p,.86,.9));foot.style.opacity=seg(p,.14,.2);var kc=EO(seg(p,.88,.95));T(cta,'translateY('+(1-kc)*24+'px) scale('+(.92+.08*kc)+')',kc);cta.style.pointerEvents=kc>.5?'auto':'none';
-  };
-})();
-
-/* --- ganhos --- */
-(function(){
-  var sc=$('[data-scene=ganhos]'),steps=$$('.step',sc),pv=$('.pval',sc),arc=$('.arc',sc),pix=$('.pix',sc),stream=$('.stream',sc);
-  for(var i=0;i<14;i++){var d=document.createElement('i');d.textContent='◆';var a=Math.random()*6.28,r=180+Math.random()*120;d.style.setProperty('--sx',Math.cos(a)*r+'px');d.style.setProperty('--sy',Math.sin(a)*r+'px');d.style.animationDelay=(i*.17)+'s';stream.appendChild(d);}
-  var last=-1;
-  UP.ganhos=function(p){
-    var v=53*E(seg(p,.04,.48));var r=Math.round(v);
-    if(r!==last){last=r;pv.textContent=r;}
-    arc.style.strokeDashoffset=552.9*(1-v/100);
-    stream.classList.toggle('on',p>.02&&p<.5);
-    var vis=[1-seg(p,.33,.39),seg(p,.4,.46)*(1-seg(p,.62,.68)),seg(p,.69,.75)];
-    for(var i=0;i<3;i++){T(steps[i],(mob?'':'translateY(-50%) ')+'translateY('+(1-vis[i])*24+'px)',vis[i]);steps[i].style.pointerEvents=vis[i]>.5?'auto':'none';}
-    var kp=EO(seg(p,.7,.78));T(pix,'translateY('+(1-kp)*20+'px) scale('+(.8+.2*kp)+')',kp);
   };
 })();
 
