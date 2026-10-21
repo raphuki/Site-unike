@@ -748,7 +748,7 @@ var UP={};
   var ringTop=0;function place(){var r=copy.querySelector('.btn').getBoundingClientRect(),st=copy.parentNode.getBoundingClientRect();var ts=parseFloat(getComputedStyle(tros[0]).width)||150;
     var hb=hint.getBoundingClientRect(),gapTop=r.bottom-st.top,gapBot=hb.top-st.top;
     var blk=ts*0.95+(mob?48:52);var free=gapBot-gapTop-blk;
-    var top=gapTop+Math.max(mob?26:34,free*0.48)+ts*0.95;top=Math.min(top,gapBot-(mob?52:56));$('.ring').style.top=top+'px';ringTop=top;}
+    var top=gapTop+Math.min(Math.max(mob?26:34,free*0.48),mob?46:60)+ts*0.95;top=Math.min(top,gapBot-(mob?52:56));$('.ring').style.top=top+'px';ringTop=top;}
   UP._heroPlace=place;
   UP.hero=function(p,t){if(!ringTop)place();
     var k=E(seg(p,.22,.7));
