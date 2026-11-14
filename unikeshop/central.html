@@ -1,0 +1,275 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Unike · Central de Propostas</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f6f4fa">
+<meta name="description" content="Escolha a taxa, preencha o @ e envie a proposta.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Unike">
+<meta property="og:title" content="Unike · Central de Propostas">
+<meta property="og:description" content="Escolha a taxa, preencha o @ e envie a proposta.">
+<meta property="og:image" content="https://unikeshop.com.br/img/og.jpg"><meta property="og:image:width" content="900"><meta property="og:image:height" content="473">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/u.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Ferramenta do atendimento: escolher a taxa e mandar a proposta em PDF ou link, em um toque. Mesma identidade da proposta. */
+:root{
+  --bg:#f6f4fa;--card:#ffffff;--ink:#1d1d1f;--grey:#6e6e73;--line:#e6e2ef;
+  --accent:#7b3cf0;--accent-d:#6a2ee0;--soft:#efe8ff;--ok:#0c8a66;--ok-soft:#e3f6ef;--wa:#1da851;
+  --sans:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:'Geist Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.45}
+.wrap{max-width:560px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 6px}
+header img{height:22px;width:auto}
+header span{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+h1{margin:0;font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.sub{margin:6px 0 0;color:var(--grey)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.step{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.06em}
+.step b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--accent);font-family:var(--mono);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.grid button{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 16px var(--mono);padding:13px 0;border-radius:12px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.grid button:hover{border-color:#cdbcf5}
+.grid button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+label{font-size:14px;font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px}
+.field small{color:var(--grey);font-size:12.5px;font-weight:500}
+input[type=text],input[type=tel]{width:100%;font:500 16px var(--sans);padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two>*{min-width:0}
+.summary{display:flex;align-items:center;gap:14px;background:linear-gradient(150deg,#3a1d7a,#1b0f3a);color:#fff;border:0}
+.summary .big{font-size:44px;font-weight:700;letter-spacing:-.04em;line-height:1;min-width:2.4ch}
+.summary p{margin:0;font-size:14px;color:#d8cdf5}
+.summary p b{color:#fff}
+.summary .doc{font-family:var(--mono);font-size:12px;color:#bba9ea;margin-top:4px;word-break:break-word}
+.actions{display:flex;flex-direction:column;gap:8px}
+.btn{appearance:none;border:0;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;font:600 16px var(--sans);padding:15px 18px;border-radius:14px;cursor:pointer;text-decoration:none;transition:background .15s,transform .1s}
+.btn:active{transform:scale(.99)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.pdf{background:var(--accent);color:#fff}
+.btn.pdf:hover{background:var(--accent-d)}
+.btn.wa{background:var(--wa);color:#fff}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.hint{margin:0;font-size:13px;color:var(--grey);text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;background:var(--ink);color:#fff;font-size:14px;font-weight:600;padding:12px 18px;border-radius:999px;transition:opacity .2s,transform .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* registros */
+.tabs{display:flex;gap:4px;padding:4px;border-radius:14px;background:#ebe6f5}
+.tabs button{flex:1;appearance:none;border:0;background:transparent;font:600 15px var(--sans);color:var(--grey);padding:10px;border-radius:10px;cursor:pointer}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(30,10,70,.10)}
+.reg-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.reg-head h2{margin:0;font-size:22px;letter-spacing:-.02em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.stat b{display:block;font-size:24px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--grey);font-weight:500}
+.search{width:100%;font:500 15px var(--sans);padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff}
+.list{display:flex;flex-direction:column;gap:8px}
+.row{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.row>*{min-width:0}
+.row .who{font-weight:600;overflow-wrap:anywhere}
+.row .tx{font:600 18px var(--mono);color:var(--accent);grid-row:span 2;align-self:center}
+.row .meta{font-size:13px;color:var(--grey);overflow-wrap:anywhere}
+.row .meta a{color:var(--ok);font-weight:600;text-decoration:none}
+.empty{text-align:center;color:var(--grey);padding:28px 10px;background:#fff;border:1px dashed var(--line);border-radius:16px}
+.mini{appearance:none;border:1px solid var(--line);background:#fff;font:600 14px var(--sans);padding:9px 14px;border-radius:10px;cursor:pointer;color:var(--ink)}
+.saved{font-size:12.5px;color:var(--ok);font-weight:600;text-align:center;margin:0;min-height:1em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:420px){.grid{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+#vEnviar{display:flex;flex-direction:column;gap:14px}
+#vEnviar[hidden],#vReg[hidden],#regOn[hidden],.card[hidden]{display:none!important}
+#vReg{display:flex;flex-direction:column;gap:14px}
+input[type=password]{width:100%;font:500 16px var(--sans);padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+[hidden]{display:none!important}
+</style>
+</head><body>
+<div class="wrap">
+  <header><img src="/img/logo-central.png" alt="Unike" id="logo" style="-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none" draggable="false"><span>Central de Propostas</span></header>
+  <div class="tabs" id="tabs" hidden role="tablist"><button type="button" class="on" data-v="enviar" role="tab">Enviar</button><button type="button" data-v="registros" role="tab">Registros</button></div>
+  <div id="vEnviar">
+  <div><h1>Proposta Shop</h1></div>
+
+  <section class="card" id="cardMe" hidden>
+    <div class="step"><b>✓</b>Seu nome <span style="text-transform:none;letter-spacing:0;font-weight:500">(só na primeira vez)</span></div>
+    <input type="text" id="me" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome">
+  </section>
+
+  <section class="card">
+    <div class="step"><b>1</b>Escolha a taxa combinada com o creator</div>
+    <div class="grid" id="grid" role="radiogroup" aria-label="Taxa"></div>
+  </section>
+
+  <section class="card">
+    <div class="step"><b>2</b>Preencha o @ do creator</div>
+    <input type="text" id="nome" autocomplete="off" autocapitalize="off" placeholder="@docreator" aria-label="@ do creator">
+  </section>
+
+  <section class="card summary" aria-live="polite">
+    <div class="big" id="sBig">8%</div>
+    <div>
+      <p id="sTxt">Em R$ 100 de comissão: <b>R$ 8</b> para a Unike, <b>R$ 92</b> para o creator.</p>
+      <div class="doc" id="sDoc">Unike - Proposta Shop - 8%.pdf</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="step"><b>3</b>Escolha como enviar</div>
+    <div class="actions">
+      <button type="button" class="btn pdf" id="bPdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span id="bPdfTxt">Enviar PDF</span></button>
+      <a class="btn wa" id="bWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Mandar link no WhatsApp</a>
+      <button type="button" class="btn ghost" id="bCopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copiar link</button>
+    </div>
+    <p class="saved" id="saved"></p>
+  </section>
+  </div>
+
+  <div id="vReg" hidden>
+    <div id="pinBox" class="card">
+      <div class="step"><b>🔒</b>Registros</div>
+      <input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="Código de acesso" aria-label="Código de acesso">
+      <button type="button" class="btn pdf" id="bPin">Entrar</button>
+    </div>
+    <div id="regOn" hidden style="display:flex;flex-direction:column;gap:14px">
+      <div class="reg-head"><h2>Registros</h2><button type="button" class="mini" id="bCsv">Exportar planilha</button></div>
+      <div class="stats"><div class="stat"><b id="stTot">0</b><span>propostas enviadas</span></div><div class="stat"><b id="stCt">0</b><span>creators diferentes</span></div><div class="stat"><b id="stTx">–</b><span>taxa mais usada</span></div></div>
+      <input class="search" id="q" type="search" placeholder="Buscar por @ ou atendente" aria-label="Buscar registros" autocomplete="off">
+      <div class="list" id="list"><div class="empty">Carregando registros…</div></div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+  var PROPOSTA='https://unikeshop.com.br/proposta/';
+  var $=function(id){return document.getElementById(id)};
+  var grid=$('grid'),nome=$('nome'),me=$('me');
+  var rate=8,busy=false,rows=[],pin='',pdfCache={};
+  function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  var s=ls('cp_rate');if(s&&+s>=2&&+s<=25)rate=+s;
+  var myName=ls('cp_me')||'';
+  if(!myName)$('cardMe').hidden=false;
+  me.addEventListener('change',function(){var v=clean(me.value);if(v){myName=v;ls('cp_me',v)}});
+  me.addEventListener('input',function(){myName=clean(me.value);ls('cp_me',myName)});
+
+  for(var i=2;i<=25;i++){var b=document.createElement('button');b.type='button';b.textContent=i+'%';b.dataset.r=i;b.setAttribute('role','radio');grid.appendChild(b)}
+
+  function clean(s){return (s||'').replace(/[\\/:*?"<>|]+/g,'').replace(/\s+/g,' ').trim().slice(0,60)}
+  function fileName(){var n=clean(nome.value);return 'Unike - Proposta Shop - '+(n?n+' - ':'')+rate+'%.pdf'}
+  function link(){return PROPOSTA+rate}
+  function waHref(){
+    var n=clean(nome.value).replace(/^@/,'');
+    var msg=(n?'Oi, '+n+'! ':'Oi! ')+'Segue a proposta da Unike para o TikTok Shop: '+link();
+    return 'https://wa.me/?text='+encodeURIComponent(msg);
+  }
+  function prefetch(r){if(pdfCache[r])return pdfCache[r];pdfCache[r]=fetch('/pdf/'+r+'.pdf').then(function(x){if(!x.ok)throw 0;return x.blob()});pdfCache[r].catch(function(){delete pdfCache[r]});return pdfCache[r]}
+  function render(){
+    grid.querySelectorAll('button').forEach(function(b){var on=+b.dataset.r===rate;b.classList.toggle('on',on);b.setAttribute('aria-checked',on)});
+    $('sBig').textContent=rate+'%';
+    $('sTxt').innerHTML='Em R$ 100 de comissão: <b>R$ '+rate+'</b> para a Unike, <b>R$ '+(100-rate)+'</b> para o creator.';
+    $('sDoc').textContent=fileName();
+    $('bWa').href=waHref();
+  }
+  var tt;function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('show')},2600)}
+
+  grid.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;rate=+b.dataset.r;ls('cp_rate',rate);render();prefetch(rate)});
+  nome.addEventListener('input',render);
+
+  var lastLog=0;
+  function log(via){
+    var now=Date.now();if(now-lastLog<1500)return;lastLog=now;
+    var body=JSON.stringify({taxa:rate,via:via,creator:clean(nome.value),atendente:myName});
+    try{
+      if(navigator.sendBeacon&&navigator.sendBeacon('/api/envio',new Blob([body],{type:'application/json'}))){done();return}
+    }catch(e){}
+    fetch('/api/envio',{method:'POST',headers:{'content-type':'application/json'},body:body,keepalive:true}).then(done,function(){});
+    function done(){$('saved').textContent='Envio registrado.';setTimeout(function(){$('saved').textContent=''},2500)}
+  }
+
+  $('bCopy').addEventListener('click',function(){
+    var v=link();
+    function fallback(){var ta=document.createElement('textarea');ta.value=v;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(ta);if(ok){toast('Link de '+rate+'% copiado');log('Link copiado')}else toast('Não deu para copiar. Use o botão do WhatsApp.')}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(function(){toast('Link de '+rate+'% copiado');log('Link copiado')},fallback)}else fallback();
+  });
+  $('bWa').addEventListener('click',function(){log('WhatsApp')});
+
+  function saveBlob(blob,name){
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},4000);
+  }
+  $('bPdf').addEventListener('click',function(){
+    if(busy)return;busy=true;var btn=$('bPdf'),name=fileName(),r=rate;
+    $('bPdfTxt').textContent='Preparando…';
+    var p=prefetch(r);
+    p.then(function(blob){
+      var file=null;try{file=new File([blob],name,{type:'application/pdf'})}catch(e){}
+      if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
+        return navigator.share({files:[file]}).then(function(){log('PDF')},function(err){
+          if(err&&err.name==='AbortError')return;
+          if(err&&err.name==='NotAllowedError'){toast('Toque de novo para enviar');return}
+          saveBlob(blob,name);log('PDF');
+        });
+      }
+      saveBlob(blob,name);toast('PDF de '+r+'% baixado');log('PDF');
+    }).catch(function(){toast('Não foi possível pegar o PDF. Tente de novo.')})
+    .finally(function(){busy=false;$('bPdfTxt').textContent='Enviar PDF'});
+  });
+
+  /* registros (escondido): 5 toques rápidos na logo */
+  var tabs=$('tabs'),taps=[];
+  tabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    tabs.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+    var reg=b.dataset.v==='registros';$('vEnviar').hidden=reg;$('vReg').hidden=!reg;if(reg&&pin)load()});
+  $('logo').addEventListener('click',function(){
+    var now=Date.now();taps=taps.filter(function(t){return now-t<2000});taps.push(now);
+    if(taps.length>=5){taps=[];
+      if(tabs.hidden){tabs.hidden=false;tabs.querySelector('[data-v="registros"]').click();if(!pin)setTimeout(function(){$('pin').focus()},50)}
+      else{tabs.querySelector('[data-v="enviar"]').click();tabs.hidden=true}}
+  });
+  try{pin=sessionStorage.getItem('cp_pin')||''}catch(e){}
+  function tryPin(){var v=$('pin').value.trim();if(!v)return;
+    fetch('/api/envios',{headers:{'x-pin':v}}).then(function(r){if(r.status===401){toast('Código errado.');return null}if(!r.ok)throw 0;return r.json()})
+    .then(function(d){if(!d)return;pin=v;try{sessionStorage.setItem('cp_pin',v)}catch(e){}show(d)}).catch(function(){toast('Não foi possível carregar.')})}
+  $('bPin').addEventListener('click',tryPin);
+  $('pin').addEventListener('keydown',function(e){if(e.key==='Enter')tryPin()});
+  function show(d){rows=d.rows||[];$('pinBox').hidden=true;$('regOn').hidden=false;drawList()}
+  function load(){fetch('/api/envios',{headers:{'x-pin':pin}}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(show).catch(function(s){if(s===401){pin='';try{sessionStorage.removeItem('cp_pin')}catch(e){}$('pinBox').hidden=false;$('regOn').hidden=true}})}
+
+  function fmtDate(ts){try{var d=new Date(ts);return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}catch(e){return ''}}
+  function drawList(){
+    var q=($('q').value||'').toLowerCase().trim();
+    var vis=rows.filter(function(r){if(!q)return true;return (r.creator||'').toLowerCase().indexOf(q)>=0||(r.atendente||'').toLowerCase().indexOf(q)>=0});
+    var L=$('list');L.textContent='';
+    if(!vis.length){var e=document.createElement('div');e.className='empty';e.textContent=rows.length?'Nada encontrado.':'Nenhuma proposta registrada ainda.';L.appendChild(e)}
+    vis.slice(0,500).forEach(function(r){
+      var d=document.createElement('div');d.className='row';
+      var w=document.createElement('div');w.className='who';w.textContent=r.creator||'Sem @';
+      var t=document.createElement('div');t.className='tx';t.textContent=r.taxa+'%';
+      var m=document.createElement('div');m.className='meta';
+      m.textContent=[fmtDate(r.ts),r.via,r.atendente?'por '+r.atendente:''].filter(Boolean).join(' · ');
+      d.appendChild(w);d.appendChild(t);d.appendChild(m);L.appendChild(d);
+    });
+    $('stTot').textContent=rows.length;
+    var ks={};rows.forEach(function(r){var k=(r.creator||'').toLowerCase();if(k)ks[k]=1});$('stCt').textContent=Object.keys(ks).length;
+    var c={};rows.forEach(function(r){c[r.taxa]=(c[r.taxa]||0)+1});var best=null;for(var k in c)if(best===null||c[k]>c[best])best=k;$('stTx').textContent=best?best+'%':'–';
+  }
+  $('q').addEventListener('input',drawList);
+  $('bCsv').addEventListener('click',function(){
+    if(!rows.length){toast('Ainda não há registros.');return}
+    function q(v){v=v==null?'':String(v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
+    var lines=[['Data','Creator','Taxa (%)','Como enviou','Atendente'].join(';')];
+    rows.forEach(function(r){lines.push([fmtDate(r.ts),r.creator,r.taxa,r.via,r.atendente].map(q).join(';'))});
+    saveBlob(new Blob(['﻿'+lines.join('\n')],{type:'text/csv'}),'Registros Proposta Shop.csv');
+  });
+
+  render();prefetch(rate);
+})();
+</script>
+</body></html>
